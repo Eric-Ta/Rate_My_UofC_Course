@@ -1,4 +1,4 @@
-# Rate My UofC Courses
+# Rate My UofC Course
 
 
 For this project, I made a course rating website for the University of Calgary.
