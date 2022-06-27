@@ -5,10 +5,10 @@ For this project, I (alongside a group of 3 others) developed a course rating we
 We used HTML, CSS, JavaScript, NodeJS, and MongoDB to create this application. The front-end was primarily designed using figma, and we extracted the CSS from it and implemented it into our application 
 
 # Getting Started
-Open project folder in the terminal. Sample path: "yourProjectDownloadPath"/Rate_My_UofC_Course where "yourProjectDownloadPath" is the path from where you downloaded the file.
-Install the required node modules by entering npm install into the terminal.
-Enter node server.js to run the server.
-On your preferred browser, go to http://localhost:3000/.
+Open project folder in the terminal. Sample path: "yourProjectDownloadPath"/Rate_My_UofC_Course where "yourProjectDownloadPath" is the path from where you downloaded the file. <br />
+Install the required node modules by entering npm install into the terminal. <br />
+Enter node server.js to run the server. <br />
+On your preferred browser, go to http://localhost:3000/. <br />
 # Admin/Moderator Login
 To test the admin/moderator view, please use one of the following credentials for logging in:
 
