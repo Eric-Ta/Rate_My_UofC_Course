@@ -1,7 +1,7 @@
 # Rate My UofC Course
 
 
-For this project, I made a course rating website for the University of Calgary.
+For this project, I (alongside a group of 3 others) developed a course rating website for the University of Calgary.
 
 # Getting Started
 Open project folder in the terminal. Sample path: "yourProjectDownloadPath"/Rate_My_UofC_Course where "yourProjectDownloadPath" is the path from where you downloaded the file.
