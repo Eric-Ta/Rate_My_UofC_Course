@@ -33,9 +33,9 @@ Email: sam@ucalgary.ca
 Password: abc
 
 # Demo Video
-To see me go over the application, watch this demo video!
+To see me go over the application, watch this demo video! <br />
 https://youtu.be/wp5Ri1B7als
 
 # Prototyping Video
-To see me go over the prototype for the application, watch this video!
+To see me go over the prototype for the application, watch this video! <br />
 https://youtu.be/OXGA_FgyITQ
