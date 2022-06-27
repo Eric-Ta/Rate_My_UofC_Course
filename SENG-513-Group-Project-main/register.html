@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="container">
+        <div id="login">
+            <h1>Register</h1>
+            <form id="registerForm">
+                <input id="email" type="text" placeholder="Email" autocomplete="off" required>
+                <input id="password" type="password" placeholder="Password" autocomplete="off" required>
+                <input id="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="off">
+
+                <div class="centerButton">
+                    <input id="submit" type="submit" value="Next">
+                </div>
+
+            </form>
+
+            <br>
+
+            <div class="centerButton">
+                <a id="cancel" href="login">Cancel</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let submit = document.getElementById("submit");
+
+    submit.addEventListener('click', async (e) => {
+        e.preventDefault();
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (!email) {
+            alert("User registration: need email");
+            return;
+        } else if (!password) {
+            alert("User registration: need password");
+            return;
+        } else if (password !== confirmPassword) {
+            alert("User registration: passwords do not match");
+            return;
+        }
+
+        const result = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then((res) => res.json());
+
+        if (result.status === 'ok') {
+            alert('Registration success');
+            const login_result = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then((res) => res.json());
+            window.location = '/';
+        } else {
+            alert(result.error);
+        }
+    })
+
+</script>
+
+</html>
