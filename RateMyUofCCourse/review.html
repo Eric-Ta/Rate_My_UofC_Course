@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="https://raw.githack.com/sabieber/token-autocomplete/master/built/token-autocomplete.js"></script>
+    <link href="styles/token-autocomplete.css" rel="stylesheet" type="text/css" media="all">
+</head>
+
+<body>
+    <div class="review">
+        <h1>Review</h1>
+        <div class="rating">
+            <div class="rate">
+                <!-- select no stars? -->
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+            </div>
+        </div>
+
+        <form id="review">
+            <textarea id="comment"></textarea>
+            <br>
+            <h3>Keywords</h3>
+            <div id="keywords"></div>
+
+            <br><br>
+            <a id="cancel" href="/">Cancel</a>
+            <input id="addRating" type="button" value="Add Rating">
+        </form>
+    </div>
+
+    <script>
+        let tokenAutocomplete = new TokenAutocomplete({
+            name: 'keywords',
+            selector: '#keywords',
+            noMatchesText: 'No matching results...',
+            initialSuggestions: [
+                { value: 'lotsHomework', text: 'Lots of Homework' },
+                { value: 'lecHeavy', text: 'Lecture Heavy' },
+                { value: 'fun', text: 'Fun' },
+                { value: 'informative', text: 'Informative' },
+                { value: 'participMatters', text: 'Participation Matters' },
+                { value: 'clearGrading', text: 'Clear Grading Criteria' }
+            ],
+        });
+        //tokenAutocomplete.debug(true);
+
+        // try select no star
+        // const star1 = document.getElementById("star1");
+        // star1.addEventListener("click", () => {
+        //     if (star1.checked) {
+        //         star1.checked = false;
+        //     } else {
+        //         star1.checked = true;
+        //     }
+        // });
+
+        // get course name from url
+        var courseName;
+        window.onload = function () {
+            var url = document.location.href,
+                params = url.split('?')[1],
+                tmp = params.split('=')[1];
+            courseName = decodeURIComponent(tmp);
+        }
+
+        //Click on "Add Rating", type=button for now, might change to type=submit if using POST method
+        document.getElementById("addRating").addEventListener("click", async function () {
+
+            //get rating
+            var ratings = document.getElementsByName('rate');
+            var i = 0;
+            var rating = 0;
+            //for (var i = 0; i < ratings.length; i++) {
+            while (i < ratings.length) {
+                if (ratings[i].checked) {
+                    rating = ratings[i].value;
+                    // console.log("Rating: " + ratings[i].value); //for testing, placeholder
+                    // console.log("i: " + i);
+                    break;
+                }
+                i++;
+            }
+
+            //get comment
+            var comment = document.getElementById('comment').value;
+            // console.log("Comment: " + comment); //for testing, placeholder
+
+            //get keywords
+            var keywords = document.getElementsByClassName('token-autocomplete-token');
+            var keywordArr = [];
+            for (var i = 0; i < keywords.length; i++) {
+                keywordArr.push(keywords[i].attributes[1].value);
+            }
+            // console.log("Keywords: " + keywordArr); //for testing, placeholder
+
+
+            if (!comment) {
+                console.log("Add comment: need comment");
+                return;
+            }
+
+            const result = await fetch('/api/addReview', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    rating,
+                    comment,
+                    keywordArr,
+                    courseName
+                })
+            }).then((res) => res.json());
+
+            if (result.status === 'ok') {
+                alert('Review added');
+                window.location = '/';
+            } else {
+                alert('Review added');
+                console.log(result.err);
+                window.location = '/';
+            }
+        });
+        
+    </script>
+
+</body>
+
+</html>
