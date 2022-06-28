@@ -2,7 +2,8 @@
 
 
 For this project, I (alongside a group of 3 others) developed a course rating website for the University of Calgary. <br />
-We used HTML, CSS, JavaScript, NodeJS, and MongoDB to create this application. The front-end was primarily designed using figma, and we extracted the CSS from it and implemented it into our application 
+We used HTML, CSS, JavaScript, NodeJS, and MongoDB to create this application. The front-end was primarily designed using figma, and we extracted the CSS from it and implemented it into our application  <br />
+I have also included 2 documents: ProjectProposal.pdf and FinalReport.pdf which provides documentation about features, technology used, etc. 
 
 # Getting Started
 Open project folder in the terminal. Sample path: "yourProjectDownloadPath"/Rate_My_UofC_Course where "yourProjectDownloadPath" is the path from where you downloaded the file. <br />
