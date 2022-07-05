@@ -41,3 +41,7 @@ https://youtu.be/wp5Ri1B7als
 # Prototyping Video
 To see me go over the prototype for the application, watch this video! <br />
 https://youtu.be/OXGA_FgyITQ
+
+# Deployed Website 
+This application has been deployed using heroku, check out the website! <br />
+https://rate-my-uofc-course.herokuapp.com/
